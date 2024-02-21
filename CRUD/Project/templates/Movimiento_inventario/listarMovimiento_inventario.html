@@ -1,0 +1,62 @@
+{% extends "Inicio/index.html" %}
+{% load static %}
+
+{% block title %} Listado de Movimientos del Inventario {% endblock title %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css'  %}">
+{% endblock extra_css %}
+
+{% block body %}
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<div class="col align-self-start">
+				<a class="nav-link" onclick="abrir_modal_creacionMovimiento_inventario('{% url 'registrar_Movimiento_inventario' %}');" title="Añadir Movimiento de Inventario" aria-label="Añadir Movimiento de Inventario">
+	              <i class="fa fa-plus"></i>
+	            </a>
+			</div>
+			<div class="col align-self-center">
+				<strong class="card-title"> Listado de Movimientos del Inventario </strong>
+			</div>
+		</div>
+	</div>
+	<div class="table-stats order-table ov-h">
+		<table id="tabla_movimientos_inventario" class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Fecha del Movimiento</th>
+					<th>Motivo del Movimiento</th>
+					<th>Tipo de Movimiento</th>
+					<th>Empleado</th>
+					<th>Producto</th>
+					<th>Cantidad</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="creacionMovimiento_inventario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="edicionMovimiento_inventario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="eliminacionMovimiento_inventario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+{% endblock body %}
+
+{% block extrajs %}
+	<script src="{% static 'js/lib/data-table/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/movimiento_Inventario.js' %}"></script>
+{% endblock extrajs %}

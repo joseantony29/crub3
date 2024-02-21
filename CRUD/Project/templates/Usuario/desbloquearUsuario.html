@@ -1,0 +1,66 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_desbloquearUsuario();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Desbloquear Usuario: {{ usuario }} </h2>
+    </div>
+    <form id="form_desbloquearUsuario" action="{% url 'desbloquear_Usuario' usuario.pk %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.username }}</div>
+          <div class="alert alert-danger error-username d-none"></div>
+        </p>
+
+        <p>
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre }}</div>
+          <div class="alert alert-danger error-nombre d-none"></div>
+        </p>
+
+        <p>
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.apellido }}</div>
+          <div class="alert alert-danger error-apellido d-none"></div>
+        </p>
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.email }}</div>
+          <div class="alert alert-danger error-email d-none"></div>
+        </p>
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.password1 }}</div>
+          <div class="alert alert-danger error-password1 d-none"></div>
+        </p>
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.password2 }}</div>
+          <div class="alert alert-danger error-password2 d-none"></div>
+        </p>
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cargo }}</div>
+          <div class="alert alert-danger error-cargo d-none"></div>
+        </p>
+
+        <p>
+          {{ form.intentos_fallidos.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.intentos_fallidos }}</div>
+          <div class="alert alert-danger error-cargo d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cuenta_bloqueada.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cuenta_bloqueada }}</div>
+          <div class="alert alert-danger error-cargo d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_desbloquearUsuario();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="desbloquearUsuario();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>

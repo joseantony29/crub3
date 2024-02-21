@@ -1,0 +1,75 @@
+{% extends "Inicio/index.html" %}
+{% load static %}
+
+{% block title %} Listado de Pacientes {% endblock title %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css'  %}">
+{% endblock extra_css %}
+
+{% block body %}
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<div class="col align-self-start">
+				<a class="nav-link" onclick="abrir_modal_creacionPaciente('{% url 'registrar_Paciente' %}');" title="Añadir Paciente" aria-label="Añadir Paciente">
+	              <i class="fa fa-plus"></i>
+	            </a>
+			</div>
+			<div class="col align-self-center">
+				<strong class="card-title"> Listado de Pacientes </strong>
+			</div>
+		</div>
+	</div>
+	<div class="table-stats order-table ov-h">
+		<table id="tabla_pacientes" class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Cedula</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Telefono</th>
+					<th>Zona</th>
+					<th>Sexo</th>
+					<th>Embarazada</th>
+					<th>Fecha de Nacimiento</th>
+					<th>Representante</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="creacionPaciente" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="edicionPaciente" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="eliminacionPaciente" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="creacionRepresentante" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="creacionRecipe_paciente" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+{% endblock body %}
+
+{% block extrajs %}
+	<script src="{% static 'js/lib/data-table/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/paciente.js' %}"></script>
+	<script src="{% static 'js/representante.js' %}"></script>
+	<script src="{% static 'js/recipe_Paciente.js' %}"></script>
+{% endblock extrajs %}

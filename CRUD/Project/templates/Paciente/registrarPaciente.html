@@ -1,0 +1,170 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_creacionPaciente();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Registrar Paciente </h2>
+    </div>
+    <form id="form_creacionPaciente" action="{% url 'registrar_Paciente' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          {{ form.cedula_pac.label }}
+          <div class="input-group">
+            <div class="w-25">{{ form.tipo_cedula_pac }}</div>
+            <div class="w-75" onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.cedula_pac }}</div>
+          </div>
+          <div class="alert alert-danger error-cedula_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.nombre_pac.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre_pac }}</div>
+          <div class="alert alert-danger error-nombre_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.apellido_pac.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.apellido_pac }}</div>
+          <div class="alert alert-danger error-apellido_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.telefono_pac.label }}
+          <div class="input-group">
+            <div class="w-25">{{ form.tipo_telefono_pac }}</div>
+            <div class="w-75" onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.telefono_pac }}</div>
+          </div>
+          <div class="alert alert-danger error-telefono_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.email_pac.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.email_pac }}</div>
+          <div class="alert alert-danger error-email_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.id_zona.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_zona }}</div>
+          <div class="alert alert-danger error-id_zona d-none"></div>
+        </p>
+
+        <p>
+          {{ form.sexo_pac.label }}
+          <div id="sexo_pac_field" oncopy="return false" onpaste="return false" oncut="return false">{{ form.sexo_pac }}</div>
+          <div class="alert alert-danger error-sexo_pac d-none"></div>
+        </p>
+
+        <p id="embarazada_field1" style="display: none;">
+          {{ form.embarazada.label }}
+          <div id="embarazada_field2" style="display: none;" oncopy="return false" onpaste="return false" oncut="return false">{{ form.embarazada }}</div>
+          <div class="alert alert-danger error-embarazada d-none"></div>
+        </p>
+
+        <p>
+          {{ form.fecha_nacimiento_pac.label }}
+          <div id="fecha_nacimiento_pac_field" oncopy="return false" onpaste="return false" oncut="return false">{{ form.fecha_nacimiento_pac }}</div>
+          <div class="alert alert-danger error-fecha_nacimiento_pac d-none"></div>
+        </p>
+
+        <p id="cod_repr_field1" style="display: none;">
+          {{ form.cod_repr.label }}
+          <div class="input-group">
+            <div id="cod_repr_field2" style="display: none;" class="w-75" oncopy="return false" onpaste="return false" oncut="return false">{{ form.cod_repr }}</div>
+            <a class="nav-link w-25" onclick="abrir_modal_creacionRepresentante('{% url 'registrar_Representante' %}');" title="Añadir Representante" aria-label="Añadir Representante">
+              <i id="cod_repr_field3" style="display: none;" class="fa fa-plus"></i>
+            </a>
+          </div>
+          <div class="alert alert-danger error-cod_repr d-none"></div>
+        </p>
+
+        <p>
+          {{ form.constancia_residencia.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.constancia_residencia }}</div>
+          <div class="alert alert-danger error-constancia_residencia d-none"></div>
+        </p>
+
+        <p>
+          {{ form.username_pac.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.username_pac }}</div>
+          <div class="alert alert-danger error-username_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.password1.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.password1 }}</div>
+          <div class="alert alert-danger error-password1 d-none"></div>
+        </p>
+
+        <p>
+          {{ form.password2.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.password2 }}</div>
+          <div class="alert alert-danger error-password2 d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cargo_pac.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cargo_pac }}</div>
+          <div class="alert alert-danger error-cargo_pac d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_creacionPaciente();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="registrarPaciente();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Obtener referencias a los elementos
+  var sexoPacField = document.getElementById('sexo_pac_field');
+  var embarazadaField1 = document.getElementById('embarazada_field1');
+  var embarazadaField2 = document.getElementById('embarazada_field2');
+
+  // Agregar un evento de cambio al campo sexo_pac
+  sexoPacField.addEventListener('change', function() {
+    // Obtener el valor seleccionado en sexo_pac
+    var sexoSeleccionado = sexoPacField.querySelector('select').value;
+
+    // Mostrar u ocultar el campo embarazada según el valor de sexo_pac
+    if (sexoSeleccionado === 'FEMENINO') {
+      embarazadaField1.style.display = 'block';
+      embarazadaField2.style.display = 'block';
+    } else {
+      embarazadaField1.style.display = 'none';
+      embarazadaField2.style.display = 'none';
+    }
+  });
+</script>
+
+<script>
+  // Obtener referencias a los elementos
+  var fechaNacimientoField = document.getElementById('fecha_nacimiento_pac_field');
+  var codReprField1 = document.getElementById('cod_repr_field1');
+  var codReprField2 = document.getElementById('cod_repr_field2');
+  var codReprField3 = document.getElementById('cod_repr_field3');
+
+  // Agregar un evento de cambio al campo fecha_nacimiento_pac
+  fechaNacimientoField.addEventListener('change', function() {
+    // Obtener la fecha de nacimiento seleccionada
+    var fechaNacimiento = new Date(fechaNacimientoField.querySelector('input').value);
+
+    // Calcular la edad del paciente
+    var edad = new Date().getFullYear() - fechaNacimiento.getFullYear();
+
+    // Mostrar u ocultar el campo cod_repr según la edad del paciente
+    if (edad < 18) {
+      codReprField1.style.display = 'block';
+      codReprField2.style.display = 'block';
+      codReprField3.style.display = 'block';
+    } else {
+      codReprField1.style.display = 'none';
+      codReprField2.style.display = 'none';
+      codReprField3.style.display = 'none';
+    }
+  });
+</script>

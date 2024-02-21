@@ -1,0 +1,57 @@
+{% extends "Inicio/index.html" %}
+{% load static %}
+
+{% block title %} Listado de Tipos de Movimientos {% endblock title %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css'  %}">
+{% endblock extra_css %}
+
+{% block body %}
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<div class="col align-self-start">
+				<a class="nav-link" onclick="abrir_modal_creacionTipo_mov('{% url 'registrar_Tipo_mov' %}');" title="Añadir Tipo del Movimiento" aria-label="Añadir Tipo del Movimiento">
+	              <i class="fa fa-plus"></i>
+	            </a>
+			</div>
+			<div class="col align-self-center">
+				<strong class="card-title"> Listado de Tipos de Movimientos </strong>
+			</div>
+		</div>
+	</div>
+	<div class="table-stats order-table ov-h">
+		<table id="tabla_tipo_movs" class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Descripción del Movimiento</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="creacionTipo_mov" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="edicionTipo_mov" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="eliminacionTipo_mov" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+{% endblock body %}
+
+{% block extrajs %}
+	<script src="{% static 'js/lib/data-table/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/tipo_Mov.js' %}"></script>
+{% endblock extrajs %}

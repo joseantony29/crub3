@@ -1,0 +1,13 @@
+{% extends 'inicio/index.html' %}
+
+{% block body %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_file">Seleccione el archivo:</label>
+    {{ form.file }}
+    <input type="submit" value="Importar">
+  </form>
+  {% if success_message %}
+    <div class="alert alert-success" role="alert">{{ success_message }}</div>
+  {% endif %}
+{% endblock %}

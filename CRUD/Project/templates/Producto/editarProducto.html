@@ -1,0 +1,73 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_edicionProducto();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Editar Producto: {{ producto }} </h2>
+    </div>
+    <form id="form_edicionProducto" action="{% url 'editar_Producto' producto.pk %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          {{ form.nombre_producto.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre_producto }}</div>
+          <div class="alert alert-danger error-nombre_producto d-none"></div>
+        </p>
+
+        <p>
+          {{ form.existencial_actual.label }}
+          <div onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.existencial_actual }}</div>
+          <div class="alert alert-danger error-existencial_actual d-none"></div>
+        </p>
+
+        <p>
+          {{ form.id_ubicacion.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_ubicacion }}</div>
+          <div class="alert alert-danger error-id_ubicacion d-none"></div>
+        </p>
+        
+        <p>
+          {{ form.id_tipo_insumo.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_tipo_insumo }}</div>
+          <div class="alert alert-danger error-id_tipo_insumo d-none"></div>
+        </p>
+        
+        <p>
+          {{ form.id_lote.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_lote }}</div>
+          <div class="alert alert-danger error-id_lote d-none"></div>
+        </p>
+        
+        <p>
+          {{ form.id_laboratorio.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_laboratorio }}</div>
+          <div class="alert alert-danger error-id_laboratorio d-none"></div>
+        </p>
+
+        <p>
+          {{ form.limite.label }}
+          <div onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.limite }}</div>
+          <div class="alert alert-danger error-limite d-none"></div>
+        </p>
+
+        <p>
+          {{ form.stock_max.label }}
+          <div onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.stock_max }}</div>
+          <div class="alert alert-danger error-stock_max d-none"></div>
+        </p>
+
+        <p>
+          {{ form.stock_min.label }}
+          <div onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.stock_min }}</div>
+          <div class="alert alert-danger error-stock_min d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_edicionProducto();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="editarProducto();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_edicionPaciente();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Editar Paciente: {{ paciente }} </h2>
+    </div>
+    <form id="form_edicionPaciente" action="{% url 'editar_Paciente' paciente.pk %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          <div class="input-group">
+            <div class="w-25">{{ form.tipo_cedula_pac }}</div>
+            <div class="w-75" onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.cedula_pac }}</div>
+          </div>
+          <div class="alert alert-danger error-cedula_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.nombre_pac.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre_pac }}</div>
+          <div class="alert alert-danger error-nombre_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.apellido_pac.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.apellido_pac }}</div>
+          <div class="alert alert-danger error-apellido_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.telefono_pac.label }}
+          <div class="input-group">
+            <div class="w-25">{{ form.tipo_telefono_pac }}</div>
+            <div class="w-75" onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.telefono_pac }}</div>
+          </div>
+          <div class="alert alert-danger error-telefono_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.id_zona.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_zona }}</div>
+          <div class="alert alert-danger error-id_zona d-none"></div>
+        </p>
+
+        <p>
+          {{ form.sexo_pac.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.sexo_pac }}</div>
+          <div class="alert alert-danger error-sexo_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.embarazada.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.embarazada }}</div>
+          <div class="alert alert-danger error-embarazada d-none"></div>
+        </p>
+
+        <p>
+          {{ form.fecha_nacimiento_pac.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.fecha_nacimiento_pac }}</div>
+          <div class="alert alert-danger error-fecha_nacimiento_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cod_repr.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cod_repr }}</div>
+          <div class="alert alert-danger error-cod_repr d-none"></div>
+        </p>
+
+        <p>
+          {{ form.constancia_residencia.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.constancia_residencia }}</div>
+          <div class="alert alert-danger error-constancia_residencia d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cod_rec.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cod_rec }}</div>
+          <div class="alert alert-danger error-cod_rec d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_edicionPaciente();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="editarPaciente();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>

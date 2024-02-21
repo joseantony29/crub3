@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_creacionMovimiento_inventario();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Registrar Movimiento del Inventario </h2>
+    </div>
+    <form id="form_creacionMovimiento_inventario" action="{% url 'registrar_Movimiento_inventario' %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          {{ form.motivo_mov.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.motivo_mov }}</div>
+          <div class="alert alert-danger error-motivo_mov d-none"></div>
+        </p>
+
+        <p>
+          {{ form.tipo_mov.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.tipo_mov }}</div>
+          <div class="alert alert-danger error-tipo_mov d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cod_empl.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cod_empl }}</div>
+          <div class="alert alert-danger error-cod_empl d-none"></div>
+        </p>
+
+        <p>
+          {{ form.id_producto.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_producto }}</div>
+          <div class="alert alert-danger error-id_producto d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cantidad.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cantidad }}</div>
+          <div class="alert alert-danger error-cantidad d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_creacionMovimiento_inventario();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="registrarMovimiento_inventario();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+{% extends "Inicio/index.html" %}
+{% load static %}
+
+{% block title %} Cambiar contraseña {% endblock title %}
+
+{% block body %}
+
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title"> Cambiar contraseña del Usuario: {{ request.user.pk }} </h2>
+    </div>
+    <form id="form_cambiarContraseña" action="{% url 'cambiar_Mi_Contraseña' request.user.pk %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.username }}</div>
+          <div class="alert alert-danger error-username d-none"></div>
+        </p>
+
+        <p>
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre }}</div>
+          <div class="alert alert-danger error-nombre d-none"></div>
+        </p>
+
+        <p>
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.apellido }}</div>
+          <div class="alert alert-danger error-apellido d-none"></div>
+        </p>
+
+        <p>
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.email }}</div>
+          <div class="alert alert-danger error-email d-none"></div>
+        </p>
+
+        <p>
+          {{ form.password1.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.password1 }}</div>
+          <div class="alert alert-danger error-password1 d-none"></div>
+        </p>
+
+        <p>
+          {{ form.password2.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.password2 }}</div>
+          <div class="alert alert-danger error-password2 d-none"></div>
+        </p>
+
+        <p>
+          {{ form.usuario_administrador }}
+          <div class="alert alert-danger error-usuario_administrador d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"><a href="{% url 'home' %}" class="text-white">Cancelar</a></button>
+        <button class="btn btn-primary" type="button" onclick="cambiarMiContraseña();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>
+
+{% endblock body %}
+
+{% block extrajs %}
+  <script src="{% static 'js/usuario.js' %}"></script>
+{% endblock extrajs %}

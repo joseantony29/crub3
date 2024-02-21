@@ -1,0 +1,25 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_edicionLaboratorio();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Editar Laboratorio: {{ laboratorio }} </h2>
+    </div>
+    <form id="form_edicionLaboratorio" action="{% url 'editar_Laboratorio' laboratorio.pk %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          {{ form.nombre_laboratorio.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre_laboratorio }}</div>
+          <div class="alert alert-danger error-nombre_laboratorio d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_edicionLaboratorio();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="editarLaboratorio();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>

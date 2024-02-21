@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_creacionFactura();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Registrar Factura </h2>
+    </div>
+    <form id="form_creacionFactura" action="{% url 'registrar_Factura' %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          {{ form.cod_pac.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cod_pac }}</div>
+          <div class="alert alert-danger error-cod_pac d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cod_empl.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cod_empl }}</div>
+          <div class="alert alert-danger error-cod_empl d-none"></div>
+        </p>
+
+        <p>
+          {{ form.descripcion.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.descripcion }}</div>
+          <div class="alert alert-danger error-descripcion d-none"></div>
+        </p>
+
+        <p>
+          {{ form.id_producto.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.id_producto }}</div>
+          <div class="alert alert-danger error-id_producto d-none"></div>
+        </p>
+
+        <p>
+          {{ form.cantidad.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cantidad }}</div>
+          <div class="alert alert-danger error-cantidad d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_creacionFactura();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="registrarFactura();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>

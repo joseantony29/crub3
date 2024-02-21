@@ -1,0 +1,82 @@
+{% extends "Inicio/index.html" %}
+{% load static %}
+
+{% block title %} Listado de Usuarios {% endblock title %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css'  %}">
+{% endblock extra_css %}
+
+{% block body %}
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+			<div class="col align-self-start">
+				<a class="nav-link" onclick="abrir_modal_creacionUsuario('{% url 'registrar_Usuario' %}');" title="Añadir Usuario" aria-label="Añadir Usuario">
+	              <i class="fa fa-plus"></i>
+	            </a>
+			</div>
+			<div class="col align-self-center">
+				<strong class="card-title"> Listado de Usuarios </strong>
+			</div>
+		</div>
+	</div>
+	<div class="form-group row justify-content-center">
+	    <label for="filtroCargo" class="col-md-2 col-form-label text-md-right">CARGO</label>
+	    <div class="col-md-6">
+	        <select id="filtroCargo" name="filtroCargo" class="form-control text-center">
+	            <option value="">TODOS</option>
+	            <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+	            <option value="ATENCION AL CLIENTE">ATENCION AL CLIENTE</option>
+	            <option value="ALMACENISTA">ALMACENISTA</option>
+	            <option value="PACIENTE">CLIENTE</option>
+	        </select>
+	    </div>
+	</div>
+	<div class="table-stats order-table ov-h">
+		<table id="tabla_usuarios" class="table">
+			<thead>
+				<tr class="text-center">
+					<th>#</th>
+					<th>Usuario</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Correo electronico</th>
+					<th>Cargo</th>
+					<th>Estado de Cuenta</th>
+					<th class="text-center">Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal fade" id="creacionUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="edicionUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="eliminacionUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="cambioContraseña" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+<div class="modal fade" id="desbloquearUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+	
+</div>
+
+{% endblock body %}
+
+{% block extrajs %}
+	<script src="{% static 'js/lib/data-table/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/usuario.js' %}"></script>
+{% endblock extrajs %}

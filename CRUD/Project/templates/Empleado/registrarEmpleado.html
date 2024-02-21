@@ -1,0 +1,61 @@
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button title="Cerrar" aria-label="Cerrar" class="close" type="button" onclick="cerrar_modal_creacionEmpleado();">
+        <spam aria-hidden="true">&times;</spam>
+      </button>
+      <h2 class="modal-title"> Registrar Empleado </h2>
+    </div>
+    <form id="form_creacionEmpleado" action="{% url 'registrar_Empleado' %}" method="POST">{% csrf_token %}
+      <div class="modal-body">
+
+        <p>
+          {{ form.cedula_empl.label }}
+          <div class="input-group">
+            <div class="w-25">{{ form.tipo_cedula_empl }}</div>
+            <div class="w-75" onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.cedula_empl }}</div>
+          </div>
+          <div class="alert alert-danger error-cedula_empl d-none"></div>
+        </p>
+
+        <p>
+          {{ form.nombre_empl.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.nombre_empl }}</div>
+          <div class="alert alert-danger error-nombre_empl d-none"></div>
+        </p>
+
+        <p>
+          {{ form.apellido_empl.label }}
+          <div onkeypress="return soloLetras(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.apellido_empl }}</div>
+          <div class="alert alert-danger error-apellido_empl d-none"></div>
+        </p>
+
+        <p>
+          {{ form.telefono_empl.label }}
+          <div class="input-group">
+            <div class="w-25">{{ form.tipo_telefono_empl }}</div>
+            <div class="w-75" onkeypress="return soloNumeros(event)" oncopy="return false" onpaste="return false" oncut="return false">{{ form.telefono_empl }}</div>
+          </div>
+          <div class="alert alert-danger error-telefono_empl d-none"></div>
+        </p>
+
+        <p>
+          {{ form.direccion_exacta.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.direccion_exacta }}</div>
+          <div class="alert alert-danger error-direccion_exacta d-none"></div>
+        </p>
+        
+        <p>
+          {{ form.cargo.label }}
+          <div oncopy="return false" onpaste="return false" oncut="return false">{{ form.cargo }}</div>
+          <div class="alert alert-danger error-cargo d-none"></div>
+        </p>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" type="button" onclick="cerrar_modal_creacionEmpleado();">Cancelar</button>
+        <button id="boton_creacion" class="btn btn-primary" type="button" onclick="registrarEmpleado();">Confirmar</button>
+        </div>
+    </form>
+  </div>
+</div>
